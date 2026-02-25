@@ -1,0 +1,285 @@
+/* --- Premium Cinematic Animated Gradient --- */
+.gradient-bg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #050711;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.gradient-bg svg {
+    display: none;
+}
+
+.gradients-container {
+    filter: url(#goo) blur(40px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.8;
+}
+
+.g1,
+.g2,
+.g3,
+.g4,
+.g5,
+.interactive {
+    position: absolute;
+    mix-blend-mode: hard-light;
+    animation: gradientMove 20s ease-in-out infinite alternate;
+}
+
+.g1 {
+    background: radial-gradient(circle at center, rgba(18, 113, 255, 0.8) 0, rgba(18, 113, 255, 0) 50%) no-repeat;
+    width: 80%;
+    height: 80%;
+    top: -20%;
+    left: -20%;
+}
+
+.g2 {
+    background: radial-gradient(circle at center, rgba(107, 74, 255, 0.8) 0, rgba(107, 74, 255, 0) 50%) no-repeat;
+    width: 80%;
+    height: 80%;
+    top: -10%;
+    right: -20%;
+    animation-delay: -2s;
+}
+
+.g3 {
+    background: radial-gradient(circle at center, rgba(100, 220, 255, 0.8) 0, rgba(100, 220, 255, 0) 50%) no-repeat;
+    width: 80%;
+    height: 80%;
+    bottom: -20%;
+    left: 20%;
+    animation-delay: -4s;
+}
+
+.g4 {
+    background: radial-gradient(circle at center, rgba(50, 160, 220, 0.8) 0, rgba(50, 160, 220, 0) 50%) no-repeat;
+    width: 80%;
+    height: 80%;
+    bottom: -20%;
+    right: -10%;
+    animation-delay: -6s;
+}
+
+.g5 {
+    background: radial-gradient(circle at center, rgba(80, 47, 122, 0.8) 0, rgba(80, 47, 122, 0) 50%) no-repeat;
+    width: 100%;
+    height: 100%;
+    top: calc(50% - 50%);
+    left: calc(50% - 50%);
+    animation-delay: -8s;
+}
+
+.interactive {
+    background: radial-gradient(circle at center, rgba(140, 100, 255, 0.8) 0, rgba(140, 100, 255, 0) 50%) no-repeat;
+    width: 100%;
+    height: 100%;
+    top: -50%;
+    left: -50%;
+    opacity: 0.7;
+}
+
+@keyframes gradientMove {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(10%) scale(1.1);
+    }
+
+    100% {
+        transform: translateY(-10%) scale(0.9);
+    }
+}
+
+/* --- Premiere Pro Realistic Timeline --- */
+.timeline-bg {
+    position: absolute;
+    top: 7.5%;
+    left: 5%;
+    width: 90%;
+    height: 85%;
+    background: #2a2a2a;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    border-radius: 16px;
+    border: 1px solid #444;
+    transform: perspective(1200px) rotateX(12deg) rotateY(-6deg) rotateZ(2deg) scale(0.95);
+    transform-origin: center;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.timeline-header {
+    height: 35px;
+    background: #4f4f4f;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.timecode {
+    color: #ffcc00;
+    /* Brighter orange/yellow */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.timeline-ruler {
+    flex-grow: 1;
+    height: 100%;
+    background-image: repeating-linear-gradient(90deg, transparent, transparent 19px, #999 19px, #999 20px);
+    position: relative;
+}
+
+.timeline-tracks {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    flex-grow: 1;
+}
+
+.timeline-divider {
+    height: 4px;
+    background: #2a2a2a;
+    margin: 5px 0;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.track {
+    height: 45px;
+    background: #4a4a4a;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 2px;
+}
+
+.track-label {
+    width: 60px;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    border-right: 1px solid #333;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #404040;
+    z-index: 3;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.clip {
+    position: absolute;
+    height: 38px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 12px;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Premiere clip colors - Made Brighter */
+.c-teal {
+    background: #00b8a9;
+}
+
+.c-purple {
+    background: #a87ffb;
+}
+
+.c-blue {
+    background: #4b88e0;
+}
+
+.c-indigo {
+    background: #5e81d1;
+}
+
+.c-green {
+    background: #4fa16b;
+}
+
+.c-darkgreen {
+    background: #3c8f53;
+}
+
+.waveform {
+    width: 100%;
+    height: 20px;
+    background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0px, transparent 1px, transparent 3px, rgba(255, 255, 255, 0.3) 3px, rgba(255, 255, 255, 0.1) 4px);
+    opacity: 0.6;
+}
+
+.playhead-container {
+    position: absolute;
+    top: 0;
+    left: 45%;
+    height: 100%;
+    z-index: 4;
+    animation: movePlayhead 20s linear infinite;
+}
+
+.playhead-top {
+    width: 16px;
+    height: 18px;
+    background: #2d8ceb;
+    /* Premiere CC Blue */
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
+    position: absolute;
+    top: 0;
+    left: -8px;
+}
+
+.playhead-line {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    width: 2px;
+    height: calc(100% - 18px);
+    background: #2d8ceb;
+    box-shadow: 0 0 5px #2d8ceb;
+}
+
+@keyframes movePlayhead {
+    0% {
+        left: 10%;
+    }
+
+    100% {
+        left: 90%;
+    }
+}
+
+/* Content Centering inside Hero */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
