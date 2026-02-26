@@ -11,13 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const timelineBg = document.querySelector('.timeline-bg');
     let scrollPos = 0;
 
-    // Simulate continuous playback of the timeline moving to the left
-    let timelineOffset = 0;
+    // Simulate smooth back-and-forth automatic panning of the timeline
+    let startTime = Date.now();
     function animateTimeline() {
-        timelineOffset += 0.5; // speed of playhead movement effect
+        let elapsedTime = Date.now() - startTime;
+        // Math.sin creates a smooth wave between -1 and 1.
+        // We divide by 4000 to slow down the panning speed.
+        let wave = Math.sin(elapsedTime / 4000);
+
+        // Center the pan at -150px, moving left and right by 100px.
+        // This ensures the 200% width background never shows its edge.
+        let panX = -150 + (wave * 100);
+
         if (timelineBg) {
             // Translate the timeline horizontally while keeping the cinematic perspective angle
-            timelineBg.style.transform = `perspective(1200px) rotateX(12deg) rotateY(-6deg) rotateZ(2deg) scale(0.95) translateX(${- (timelineOffset % 100)}px)`;
+            timelineBg.style.transform = `perspective(1200px) rotateX(12deg) rotateY(-6deg) rotateZ(2deg) scale(0.95) translateX(${panX}px)`;
         }
         requestAnimationFrame(animateTimeline);
     }
@@ -54,5 +62,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const opacity = Math.min(0.95, 0.4 + (scrollPos / window.innerHeight) * 0.55);
             overlay.style.background = `radial-gradient(circle at center, rgba(5,6,12,${opacity}) 0%, rgba(5,6,12,0.95) 80%)`;
         }
+    });
+
+    // 5. FAQ Accordion Logic
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+            });
+
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
     });
 });
